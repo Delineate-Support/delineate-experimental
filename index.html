@@ -116,7 +116,7 @@
     /* philosophy quote — bold, literary */
     .philosophy-quote {
       max-width: 950px;
-      margin: 0 auto 8rem;
+      margin: 0 auto 4rem;
       text-align: center;
     }
     .quote-mark {
@@ -141,9 +141,60 @@
       color: #B48C48;
     }
 
+    /* DOWNLOAD BUTTON SECTION — Premium addition */
+    .download-section {
+      text-align: center;
+      margin: 3rem auto 5rem;
+      padding: 2rem 0;
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+      background: transparent;
+      border: 2px solid #D4B483;
+      border-radius: 4rem;
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      color: #B48C48;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(180, 140, 72, 0.1);
+    }
+    .download-btn i {
+      font-size: 1.2rem;
+      transition: transform 0.2s ease;
+    }
+    .download-btn:hover {
+      background: #D4B483;
+      color: #FFFFFF;
+      border-color: #D4B483;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px -8px rgba(180, 140, 72, 0.3);
+    }
+    .download-btn:hover i {
+      transform: translateY(2px);
+    }
+    .download-info {
+      margin-top: 1.2rem;
+      font-size: 0.75rem;
+      color: #9B8F7E;
+      letter-spacing: 0.3px;
+      font-family: monospace;
+    }
+    .download-info i {
+      margin: 0 4px;
+      font-size: 0.7rem;
+      color: #D4B483;
+    }
+
     /* cinematic sections — each with full width storytelling */
     .story-section {
-      margin: 10rem 0;
+      margin: 8rem 0;
       scroll-margin-top: 2rem;
     }
     .section-container {
@@ -304,6 +355,7 @@
       h1 { font-size: 4rem; }
       .philosophy-text-large { font-size: 1.6rem; }
       .container { padding: 1.5rem; }
+      .download-btn { padding: 0.8rem 2rem; font-size: 1rem; }
     }
     @media (max-width: 700px) {
       .hero { margin: 1rem 0 4rem; }
@@ -342,13 +394,25 @@
     <div class="philosophy-attribution">— The architecture of attention</div>
   </div>
 
+  <!-- DOWNLOAD SECTION — Premium installer button -->
+  <div class="download-section">
+    <a href="https://github.com/Delineate-Support/Delineate_InDev_v1.6.0/releases/download/InDev_v1.6.0/Delineate_Setup_1.6.0.exe" 
+       class="download-btn" 
+       download>
+      <i class="fas fa-download"></i>
+      Download Delineate 1.6.0
+      <i class="fas fa-windows" style="font-size: 1rem; opacity: 0.8;"></i>
+    </a>
+    <div class="download-info">
+      <i class="fas fa-check-circle"></i> Windows · 1.6.0 Sovereign Edition · Free for personal use
+    </div>
+  </div>
+
   <!-- SECTION 1: FLOW — The Sanctum screenshot -->
   <div class="story-section" id="flow">
     <div class="section-container">
       <div class="section-media">
-        <!-- SCREENSHOT 1: THE SANCTUM (late night / warm amber) -->
-        <img src="Focus_Mode.PNG">
-        <!-- INSTRUCTION: replace above src with your actual screenshot (the Sanctum: focus mode, warm lamplight, timer margin, prose visible) -->
+        <img src="Focus_Mode.PNG" alt="Delineate Focus Mode — deep writing sanctuary">
       </div>
       <div class="section-content">
         <div class="section-tag">Flow state</div>
@@ -367,9 +431,7 @@
   <div class="story-section" id="structure">
     <div class="section-container reverse">
       <div class="section-media">
-        <!-- SCREENSHOT 2: THE THREAD (character weaver + chapter mentions, gold connections) -->
-        <img src="Character_Profile.PNG">
-        <!-- REPLACE with actual screenshot: two-panel composition, character profile left, chapter with gold-highlighted mentions right -->
+        <img src="Character_Profile.PNG" alt="Delineate Character Weaver — character profile with mention tracking">
       </div>
       <div class="section-content">
         <div class="section-tag">Structural clarity</div>
@@ -388,9 +450,7 @@
   <div class="story-section" id="legacy">
     <div class="section-container">
       <div class="section-media">
-        <!-- SCREENSHOT 3: THE VESSEL (book spread + ghosted interface, morning light) -->
-        <img src="Export_PDF.PNG">
-        <!-- REPLACE: dual-layer image — physical book spread in focus, Delineate interface softly blurred in background -->
+        <img src="Export_PDF.PNG" alt="Delineate Export — PDF, EPUB, DOCX with professional formatting">
       </div>
       <div class="section-content">
         <div class="section-tag">Enduring legacy</div>
@@ -460,7 +520,7 @@
       gsap.to(ring, { duration: 0.2, x: e.clientX, y: e.clientY, ease: "power2.out" });
       gsap.to(dot, { duration: 0.03, x: e.clientX - 1.5, y: e.clientY - 1.5 });
     });
-    const interactive = document.querySelectorAll('.section-media, .section-content, .handwritten-note, .colophon, .tech-credibility');
+    const interactive = document.querySelectorAll('.section-media, .section-content, .handwritten-note, .colophon, .tech-credibility, .download-btn');
     interactive.forEach(el => {
       el.addEventListener('mouseenter', () => gsap.to(ring, { duration: 0.2, width: 52, height: 52, borderColor: "#D4B483", background: "rgba(180,140,72,0.05)" }));
       el.addEventListener('mouseleave', () => gsap.to(ring, { duration: 0.25, width: 34, height: 34, borderColor: "#C6A15B", background: "rgba(180,140,72,0.02)" }));
@@ -475,6 +535,9 @@
   // philosophy reveal
   gsap.fromTo('.philosophy-text-large', { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: ".philosophy-quote", start: "top 85%" } });
   gsap.fromTo('.quote-mark', { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.7, scrollTrigger: { trigger: ".philosophy-quote", start: "top 85%" } });
+
+  // download button entrance
+  gsap.fromTo('.download-section', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.4, scrollTrigger: { trigger: ".download-section", start: "top 85%" } });
 
   // cinematic sections appearance (staggered)
   gsap.fromTo('.story-section', 
@@ -526,33 +589,5 @@
   });
 </script>
 
-<!--  SAMPLE TEXT & SCREENSHOT PLACEMENT GUIDE (visible as HTML comment) 
-  ================================================================
-  SCREENSHOT 1 (Sanctum): 
-    - Replace placeholder img src with actual Focus Mode screenshot.
-    - Requirements: warm amber lamplight, near-black background, visible prose block (real text), 
-      timer and word count subtly in margin, no chrome visible. 
-    - Mood: deep concentration.
-  
-  SCREENSHOT 2 (Thread):
-    - Replace placeholder with two-panel composition: left side character profile (Elara Vane) 
-      with mention list, right side chapter excerpt with gold-highlighted name + subtle connecting line.
-    - Background warm neutral, gold thread visual.
-    - Show connections between character and mentions.
-  
-  SCREENSHOT 3 (Vessel):
-    - Replace with dual-layer: foreground = physical book spread (EPUB/PDF output), 
-      background = Delineate interface softly blurred, export complete notification visible.
-    - Morning light / cream tones, book as hero object.
-  
-  SAMPLE PROSE for screenshots if needed: 
-    For Sanctum: "The rain arrived without warning, as it always did in March. Elara closed the window and 
-    listened to the sound of water against slate. She had been searching for this sentence for three days—the one that would
-    open the door to the second act. And now, with the storm as witness, she found it: not a door, but a thread."
-  
-    For Thread (Chapter 12): "Elara Vane stood at the edge of the orchard, her father’s compass warm in her pocket. 
-    She had not expected to return here, but the letter left no choice. 'When you read this, I will already be gone.' 
-    The words echoed across the rows of apple trees, each one a marker of years she could not recover."
--->
 </body>
 </html>
